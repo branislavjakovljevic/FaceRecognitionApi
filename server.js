@@ -14,42 +14,12 @@ const db = knex({
   }
 });
 
-// db.select('*').from('users').then(data => {
-// 	console.log(data);
-// });
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
-const database = {
-	users: [
-		{
-			id: '123',
-			name: 'John',
-	   		email: 'john@gmail.com',
-	    	password: 'cookies',
-			entries: 0, // koliko je puta submitovana slika
-			joined: new Date()
-		},
-		{
-			id: '124',
-			name: 'Sally',
-			email: 'sally@gmail.com',
-			password: 'bananas',
-			entries: 0, 
-			joined: new Date()
-		}
-	],
-	login: [
-		{
-			id: '987',
-			has: '',
-			email: 'john@gmail.com'
-		}
-	]
-}
 
 app.get('/', (req,res) => {
 	res.send(database.users)
@@ -130,27 +100,3 @@ app.put('/image', (req, res) => {
 app.listen(3000, ()=> {
 	console.log('app is running on port 3000');
 })
-
-
-
-
-
-// bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
-// // Store hash in your password DB.
-// });
-// // Load hash from your password DB.
-// bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
-//     // result == true
-// });
-// bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
-//     // result == false
-// });
-
-/*
-/ --> res = this is working
-/signIn --> POST(success/failed)
-/register --> POST = user
-/profile/:userId --> GET = user
-/image --> PUT --> user
-
-*/
